@@ -1,6 +1,14 @@
 import numpy as np
 import chess
 
+gamestart_bitmap = np.array([[1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0],
+                    [1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1]])
 
 def fen_to_bitmap(fen: str) -> np.ndarray:
     """
@@ -43,9 +51,32 @@ def indices_to_coords(diff_indices):
     return coords
 
 def find_dif_coords(bitmap1: np.ndarray, bitmap2: np.ndarray):
+    """
+    Finds the coordinates of bits which are different between two bitmaps
+    """
     indicies = find_diff_indices(bitmap1, bitmap2)
     return indices_to_coords(indicies)
 
 # def coords to indicies(coords):
+
+def parse_bitmap_line(line):
+    """
+    Removes the < > from the serial message
+    """
+    if line.startswith("<") and line.endswith(">"):
+        return line[1:-1]
+    return None
+
+def bitmapLine_to_bitmap(line):
+    """
+    Converts the flattened string
+    """
+    line = parse_bitmap_line(line)
+    if len(line) != 64:
+        raise ValueError("Bitmap must be 64 characters long.")
+    rows = [list(line[i:i+8]) for i in range(0, 64, 8)]
+    array = np.array(rows, dtype=int)
+    return np.flipud(array)
+
 
 

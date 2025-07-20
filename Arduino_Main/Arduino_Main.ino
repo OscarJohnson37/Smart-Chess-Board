@@ -66,11 +66,43 @@ void loop() {
   delay(2000);
   placePiece("e4", board);
   sendBitmapString(board);
-  delay(2000);
-  pickUpPiece("e4", board);
+
+  delay(1000);
+
+  pickUpPiece("g1", board);
   sendBitmapString(board);
   delay(2000);
-  placePiece("e2", board);
+  placePiece("f3", board);
+  sendBitmapString(board);
+
+
+  delay(1000);
+
+  pickUpPiece("d2", board);
   sendBitmapString(board);
   delay(2000);
+  placePiece("d4", board);
+  sendBitmapString(board);
+
+  delay(1000);
+
+  pickUpPiece("f3", board);
+  sendBitmapString(board);
+  delay(2000);
+  pickUpPiece("d4", board);
+  sendBitmapString(board);
+  delay(2000);
+  placePiece("d4", board);
+  sendBitmapString(board);
+
+    delay(1000);
+
+  pickUpPiece("f1", board);
+  sendBitmapString(board);
+  delay(2000);
+  placePiece("b5", board);
+  sendBitmapString(board);
+
+
+
 }

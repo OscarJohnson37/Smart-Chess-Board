@@ -57,7 +57,36 @@ def find_dif_coords(bitmap1: np.ndarray, bitmap2: np.ndarray):
     indicies = find_diff_indices(bitmap1, bitmap2)
     return indices_to_coords(indicies)
 
-# def coords to indicies(coords):
+def coords_to_indices(coords):
+    """
+    Converts square strings like ['e4', 'd5'] or full move strings like ['e2e4', 'e5e5']
+    into np-style row and column indices.
+    
+    Returns:
+        List of (row, col) tuples for all square references.
+    """
+    if isinstance(coords, str):
+        coords = [coords]  # Wrap single string
+
+    rows, cols = [], []
+
+    for coord in coords:
+        if len(coord) == 4:  # e.g. 'e2e4'
+            squares = [coord[:2], coord[2:]]
+        elif len(coord) == 2:  # e.g. 'e4'
+            squares = [coord]
+        else:
+            raise ValueError(f"Invalid coordinate format: {coord}")
+
+        for square in squares:
+            file = square[0]
+            rank = int(square[1])
+            col = ord(file) - ord('a')
+            row = 8 - rank
+            rows.append(row)
+            cols.append(col)
+
+    return rows, cols
 
 def parse_bitmap_line(line):
     """

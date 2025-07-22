@@ -1,6 +1,5 @@
 import serial
 import time
-import bitmap_utils
 import numpy as np
 
 # Adjust this to match your Arduino's port (e.g. COM3 on Windows or /dev/ttyUSB0 on Linux/Mac)

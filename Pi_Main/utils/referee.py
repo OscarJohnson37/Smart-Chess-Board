@@ -1,4 +1,4 @@
-import bitmap_utils
+import utils.bitmap_utils as bitmap_utils
 import numpy as np
 import chess
 

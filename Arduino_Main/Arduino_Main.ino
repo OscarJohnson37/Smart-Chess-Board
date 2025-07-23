@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "serial.h"
 
 String board[64] = {
   // Row 1 (A1 to H1)
@@ -43,66 +44,19 @@ void placePiece(String square, String board[]) {
   board[index] = "1";
 }
 
-void sendBitmapString(String board[]) {
-  String bitmap = getBitmapString(board);
-  Serial.print('<');
-  Serial.print(bitmap);
-  Serial.print('>');
-  Serial.print('\n');
-}
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  initSerial();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  delay(2000);
-  sendBitmapString(board);
-  delay(2000);
-  pickUpPiece("e2", board);
-  sendBitmapString(board);
-  delay(2000);
-  placePiece("e4", board);
-  sendBitmapString(board);
 
-  delay(1000);
-
-  pickUpPiece("g1", board);
-  sendBitmapString(board);
-  delay(2000);
-  placePiece("f3", board);
-  sendBitmapString(board);
-
-
-  delay(1000);
-
-  pickUpPiece("d2", board);
-  sendBitmapString(board);
-  delay(2000);
-  placePiece("d4", board);
-  sendBitmapString(board);
-
-  delay(1000);
-
-  pickUpPiece("f3", board);
-  sendBitmapString(board);
-  delay(2000);
-  pickUpPiece("d4", board);
-  sendBitmapString(board);
-  delay(2000);
-  placePiece("d4", board);
-  sendBitmapString(board);
-
-    delay(1000);
-
-  pickUpPiece("f1", board);
-  sendBitmapString(board);
-  delay(2000);
-  placePiece("b5", board);
-  sendBitmapString(board);
-
-
+  // example code for reading a line from serial
+  String line = readSerialLine();
+  if (line.length() > 0) {
+    Serial.print("Got line: ");
+    Serial.println(line);
+  }
 
 }

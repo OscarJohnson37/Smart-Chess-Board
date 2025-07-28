@@ -1,4 +1,5 @@
 #include "serial.h"
+#include "bitmap.h"
 
 String readSerialLine() {
   static String input = "";

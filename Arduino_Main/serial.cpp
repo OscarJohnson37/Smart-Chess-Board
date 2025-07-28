@@ -16,6 +16,7 @@ String readSerialLine() {
       input += c;
     }
   }
+  
 
   return "";  // No complete line yet
 }
